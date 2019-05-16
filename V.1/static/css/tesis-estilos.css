@@ -1,0 +1,715 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background:white;
+    color: black;
+    font-family: sans-serif;
+}
+
+h1{
+    background: white;
+    color: black;  
+}
+
+
+
+#GpsOn{
+    position: absolute;
+    top: 210px;
+    left: 490px;
+    width:630px;
+    height:500px;
+}
+
+#GpsOff{
+    position: absolute;
+    top: 210px;
+    left: 490px;
+    width:630px;
+    height:500px;
+}
+
+#btnGpsOn{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 6px 3px;
+    position: absolute;
+    border-radius: 10px;
+    top: 165px;
+    left: 600px;
+    transition-duration: 0.4s;
+}
+
+#btnGpsOn:hover{
+    background-color: yellow;
+    
+}
+#btnGpsOff{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 6px 3px;
+    position: absolute;
+    border-radius: 10px;
+    top: 165px;
+    left: 900px;
+    transition-duration: 0.4s;
+}
+
+#btnGpsOff:hover{
+    background-color: yellow;
+    
+}
+
+
+.titulogps{
+    color: black;
+    position: absolute;
+    top: 120px;
+    left:530px;
+}
+
+.tituloc1{
+    color: black;
+    position: absolute;
+    top:180px;
+    left: 1250px;
+}
+
+.video1{
+    position: absolute;
+    top: 230px;
+    left: 1180px;
+    height: 200px;
+    width: 300px;
+}
+
+
+.tituloc2{
+    color: black;
+    position: absolute;
+    top:450px;
+    left: 1250px;
+}
+
+.video2{
+    position: absolute;
+    top: 510px;
+    left: 1180px;
+    height: 200px;
+    width: 300px;
+}
+
+.titulo{
+    position: absolute;
+    top: 25px;
+    left: 600px;
+
+}
+
+
+.btcon{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 165px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 170px;
+    left: 15px;
+    transition-duration: 0.4s;
+}
+
+.btcon:hover{
+    background-color: yellow;
+    
+}
+
+
+
+.tituloGra1{
+    color: black;
+    position: absolute;
+    top: 380px;
+    left: 55px;
+}
+
+.dirGra1{
+    position: absolute;
+    top: 410px;
+    left: 20px;
+    
+}
+
+.bot1sub{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 435px;
+    left: 15px;
+    transition-duration: 0.4s;
+}
+
+.bot1sub:hover{
+    background-color: yellow;
+    
+}
+
+.bot1baj{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 435px;
+    left: 100px;
+    transition-duration: 0.4s;
+}
+
+.bot1baj:hover{
+    background-color: yellow;
+    
+}
+
+.tituloGra2{
+    color: black;
+    position: absolute;
+    top: 380px;
+    left: 285px;
+}
+
+.dirGra2{
+    position: absolute;
+    top: 410px;
+    left: 255px;
+    
+}
+
+.bot2sub{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 435px;
+    left: 250px;
+    transition-duration: 0.4s;
+}
+
+.bot2sub:hover{
+    background-color: yellow;
+    
+}
+
+.bot2baj{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 435px;
+    left: 335px;
+    transition-duration: 0.4s;
+}
+
+.bot2baj:hover{
+    background-color: yellow;
+    
+}
+
+
+
+
+.tituloGra3{
+    color: black;
+    position: absolute;
+    top: 500px;
+    left: 55px;
+}
+
+.dirGra3{
+    position: absolute;
+    top: 530px;
+    left: 20px;
+    
+}
+
+.bot3sub{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 555px;
+    left: 15px;
+    transition-duration: 0.4s;
+}
+
+.bot3sub:hover{
+    background-color: yellow;
+    
+}
+
+.bot3baj{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 555px;
+    left: 100px;
+    transition-duration: 0.4s;
+}
+
+.bot3baj:hover{
+    background-color: yellow;
+    
+}
+
+.tituloGra4{
+    color: black;
+    position: absolute;
+    top: 500px;
+    left: 285px;
+}
+
+.dirGra4{
+    position: absolute;
+    top: 530px;
+    left: 255px;
+    
+}
+
+.bot4sub{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 555px;
+    left: 250px;
+    transition-duration: 0.4s;
+}
+
+.bot4sub:hover{
+    background-color: yellow;
+    
+}
+
+.bot4baj{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 3px 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 555px;
+    left: 335px;
+    transition-duration: 0.4s;
+}
+
+.bot4baj:hover{
+    background-color: yellow;
+    
+}
+
+.estatus{
+    height: 20px;
+    width: 80px;
+    background: white;
+    position: absolute;
+    top: 130px;
+    left: 20px;
+    color: black;
+}
+
+.btini{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 290px;
+    left: 15px;
+    transition-duration: 0.4s;
+}
+
+.btini:hover{
+    background-color: yellow;
+    
+}
+
+.btver{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 290px;
+    left: 230px;
+    transition-duration: 0.4s;
+}
+
+.btver:hover{
+    background-color: yellow;
+}
+.titulodir{
+    position: absolute;
+    top: 250px;
+    left: 175px;
+}
+.tituloMan{
+    position: absolute;
+    top: 620px;
+    left: 175px;
+}
+
+.botAtr{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 75px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 655px;
+    left: 230px;
+    transition-duration: 0.4s;
+}
+
+.botAtr:hover{
+    background-color: yellow;
+}
+
+.botAde{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 655px;
+    left: 15px;
+    transition-duration: 0.4s;
+}
+
+.botAde:hover{
+    background-color: yellow;
+    
+}
+
+#principal{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 10px;
+    left: 1100px;
+    transition-duration: 0.4s;
+}
+
+#principal:hover{
+    background-color: yellow;
+    
+}
+
+
+#datos{
+    background-color: white;
+    border: 2px solid gray;
+    color: black;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    margin: 4px 2px;
+    position: absolute;
+    border-radius: 10px;
+    top: 10px;
+    left: 1300px;
+    transition-duration: 0.4s;
+}
+
+#datos:hover{
+    background-color: yellow;
+    
+}
+
+
+
+.columna1{
+    position: absolute;
+    top: 250;
+    left: 270;
+}
+
+.velx{
+    position: absolute;
+    top: 0;
+}
+
+.vely{
+    position: absolute;
+    top:85;
+}
+
+.velz{
+    position: absolute;
+    top: 170;
+}
+
+
+.acelx{
+    position: absolute;
+    top: 255;
+}
+
+.acely{
+    position: absolute;
+    top: 340;
+}
+
+.acelz{
+    position: absolute;
+    top:425;
+}
+
+.columna3{
+    position: absolute;
+    top: 250;
+    left: 970;
+}
+
+.lat{
+    position: absolute;
+    top: 0;
+}
+
+.lon{
+    position: absolute;
+    top: 85;
+}
+
+.alt{
+    position: absolute;
+    top: 170;
+}
+
+.bar{
+    position: absolute;
+    top: 255;
+}
+
+.bat{
+    position: absolute;
+    top: 340;
+}
+
+.fec{
+    position: absolute;
+    top:425;
+}
+
+
+.columna2{
+    position: absolute;
+    top: 250;
+    left: 520;
+}
+
+#velxRes{
+    position: absolute;
+    top: 0;
+}
+
+#velyRes{
+    position: absolute;
+    top:85;
+}
+
+#velzRes{
+    position: absolute;
+    top: 170;
+}
+
+
+#acelxRes{
+    position: absolute;
+    top: 255;
+}
+
+#acelyRes{
+    position: absolute;
+    top: 340;
+}
+
+#acelzRes{
+    position: absolute;
+    top:425;
+}
+
+.columna4{
+    position: absolute;
+    top: 250;
+    left: 1150;
+}
+
+#latRes{
+    position: absolute;
+    top: 0;
+}
+
+#lonRes{
+    position: absolute;
+    top: 85;
+}
+
+#altRes{
+    position: absolute;
+    top: 170;
+}
+
+#barRes{
+    position: absolute;
+    top: 255;
+}
+
+#batRes{
+    position: absolute;
+    top: 340;
+}
+
+#fecRes{
+    position: absolute;
+    top:425;
+}
+
+
+
+
+
+
+
+
+
+
+
+.IntDatos{
+    display: none;
+}
+
+.IntPrincipal{
+    display: block;
+}
+
+.GpsOff{
+    display: none;
+}
+
+.GpsOn{
+    display: block;
+}
+
+.tituloDatos{
+    color: black;
+    position: absolute;
+    top: 150px;
+    left:620px;
+}

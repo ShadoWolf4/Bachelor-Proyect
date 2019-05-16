@@ -1,0 +1,173 @@
+<html>
+
+    <head>
+        <title>Vehículo Agrícola Interfaz GPS</title>    
+        <link rel="shortcut icon" type="image/x-icon" href="/img/udem.png">
+        <link rel="stylesheet" type="text/css" href="css/tesis-estilos.css">
+        <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+    </head>
+
+    <body>
+        <header>
+            <img src="img/udem logo.png" width="300" height="100" alt="Logotipo"/>
+            <h1 class="titulo">Interfaz Vehículo Agrícola</h1>
+
+        </header>
+
+        
+        <div class="menu">
+
+            <button id="principal" onclick="IntPri()">Interfaz Principal</button>
+            <button id="datos" onclick="IntDat()">Interfaz Datos</button>
+
+
+        </div>
+
+
+        <div class="IntPrincipal">
+            <div class="camara1">
+                <h2 class="tituloc1">Cámara Frontal</h2>
+                <img class="video1" src="/img/surcos.jpg" width="260" height="170"/>
+            </div>
+
+
+
+            <div class="camara2">
+                <h2 class="tituloc2">Cámara Trasera</h2>
+                <img class="video2" src="/img/surcos.jpg" width="260" height="170"/>
+            </div>
+
+            <div class="gps">
+                <h1 class="titulogps">Sistema de Posicionameinto global (GPS)</h1>
+                <button id="btnGpsOn">GPS Online</button>
+                <button id="btnGpsOff">GPS Offline</button>
+                <div id="GpsOn" class="GpsOn"></div>
+            </div>
+
+
+            <div class="conec">
+
+                <button class="btcon" onclick="conectar()">Conectar</button>
+                <div class="estatus">
+                    <h3 class="tituloEst">Estatus:</h3>
+                </div>
+            </div>
+
+            <div class="dire">
+
+                <button class="btini" onclick="inicial()">Inicial 0°</button>
+                <button class="btver" onclick="vertical()">Vertical 90°</button>
+                <div class="posdir">
+                    <h2 class="titulodir">Posición</h2>
+                </div>
+            </div>
+                
+
+
+
+            <div >
+                <h3 class="tituloGra1">Dirección 1</h3>
+                <form name="direccionGra1">
+                    <input class="dirGra1" name="dirGra1" value="0">
+                </form>
+                <div>
+                    <button class="bot1sub" onclick="subir1(5)">Subir 5°</button>
+                    <button class="bot1baj" onclick="bajar1(5)">Bajar 5°</button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tituloGra2">Dirección 2</h3>
+                <form name="direccionGra2">
+                    <input class="dirGra2" name="dirGra2" value="0">
+                </form>
+                <div>
+                    <button class="bot2sub" onclick="subir2(5)">Subir 5°</button>
+                    <button class="bot2baj" onclick="bajar2(5)">Bajar 5°</button>
+                </div>
+            </div>
+
+
+            <div>
+                <h3 class="tituloGra3">Dirección 3</h3>
+                <form name="direccionGra3">
+                    <input class="dirGra3" name="dirGra3" value="0">
+                </form>
+                <div>
+                    <button class="bot3sub" onclick="subir3(5)">Subir 5°</button>
+                    <button class="bot3baj" onclick="bajar3(5)">Bajar 5°</button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tituloGra4">Dirección 4</h3>
+                <form name="direccionGra4">
+                    <input class="dirGra4" name="dirGra4" value="0">
+                </form>
+                <div>
+                    <button class="bot4sub" onclick="subir4(5)">Subir 5°</button>
+                    <button class="bot4baj" onclick="bajar4(5)">Bajar 5°</button>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="tituloMan">Manejar</h2>
+                <div>
+                    <button class="botAde" onclick="adelante()">Adelante</button>
+                    <button class="botAtr" onclick="atras()">Atrás</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="IntDatos">
+
+            <h1 class="tituloDatos">Datos Vehículo Agrícola</h1>
+
+            <div class="columna1">
+                <h2 class="velx">VelocidadX:</h2>
+                <h2 class="vely">VelocidadY: </h2>
+                <h2 class="velz">VelocidadZ: </h2> 
+                <h2 class="acelx">AceleraciónX: </h2>
+                <h2 class="acely">AceleraciónY: </h2>
+                <h2 class="acelz">AceleraciónZ: </h2>
+            </div>
+
+            <div class="columna2">
+                <h2 id="velxRes">##########</h2>
+                <h2 id="velyRes">##########</h2>
+                <h2 id="velzRes">##########</h2> 
+                <h2 id="acelxRes">##########</h2>
+                <h2 id="acelyRes">##########</h2>
+                <h2 id="acelzRes">##########</h2>
+            </div>
+
+            <div class="columna3">
+                <h2 class="lat">Latitud: </h2>
+                <h2 class="lon">Longitud: </h2>
+                <h2 class="alt">Altura: </h2>
+                <h2 class="bar">Barómetro: </h2>
+                <h2 class="bat">Batería: </h2>
+                <h2 class="fec">Fecha: </h2>
+            </div>
+
+            <div class="columna4">
+                <h2 id="latRes">##########</h2>
+                <h2 id="lonRes">##########</h2>
+                <h2 id="altRes">##########</h2> 
+                <h2 id="barRes">##########</h2>
+                <h2 id="batRes">##########</h2>
+                <h2 id="fecRes">##########</h2>
+            </div>
+
+        </div>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/socket.io.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/main.js"></script>
+        
+    </body>
+
+
+</html>
