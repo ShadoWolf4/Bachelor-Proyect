@@ -1,9 +1,146 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
 
+  <!-- Velocity Analytics -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">Velocidad</div>
+            <ul style="list-style-type:none;">
+              <li><span class="h5 font-weight-bold text-gray-800">Eje X:  </span><span id="velX"> ####</span></li>
+              <li><span class="h5 font-weight-bold text-gray-800">Eje Y:  </span><span id="velY"> ####</span></li>
+              <li><span class="h5 font-weight-bold text-gray-800">Eje Z:  </span><span id="velZ"> ####</span></li>
+            </ul>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-tachometer-alt fa-3x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acceleration Analytics -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-success text-uppercase mb-1">Aceleración</div>
+            <ul style="list-style-type:none;">
+              <li><span class="h5 font-weight-bold text-gray-800">Eje X:  </span><span id="acelX"> ####</span></li>
+              <li><span class="h5 font-weight-bold text-gray-800">Eje Y:  </span><span id="acelY"> ####</span></li>
+              <li><span class="h5 font-weight-bold text-gray-800">Eje Z:  </span><span id="acelZ"> ####</span></li>
+            </ul>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-tachometer-alt fa-3x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Geographic Analytics -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-info text-uppercase mb-1">Geolocalización</div>
+            <div class="row no-gutters">
+              <div class="col-auto">
+                <ul style="list-style-type:none;">
+                  <li><span class="h5 font-weight-bold text-gray-800">Longitud:  </span><span id="lon"> ####</span></li>
+                  <li><span class="h5 font-weight-bold text-gray-800">Latitud:  </span><span id="lat"> ####</span></li>
+                  <li><span class="h5 font-weight-bold text-gray-800">Altura:  </span><span id="alt"> ####</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-globe-americas fa-3x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time Analytics -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Tiempo</div>
+            <ul style="list-style-type:none;">
+              <li><span class="h5 font-weight-bold text-gray-800">Fecha:  </span><span id="date"> ####</span></li>
+              <li><span class="h5 font-weight-bold text-gray-800">Hora:  </span><span id="time"> ####</span></li>
+            </ul>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clock fa-3x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+
+<div class="row">
+  <!-- Area Chart -->
+  <div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Distancia Recorrida</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="chart-area">
+          <canvas id="myAreaChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie Chart -->
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Frutos Recolectados -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-info">Frutos Recolectados</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="chart-pie pt-4 pb-2">
+          <canvas id="myPieChart"></canvas>
+        </div>
+        <div class="mt-4 text-center small">
+          <span class="mr-2">
+            <i class="fas fa-apple-alt dot-apple"></i> Manzanas
+          </span>
+          <span class="mr-2">
+            <i class="fas fa-carrot dot-orange"></i> Zanahorias
+          </span>
+          <span class="mr-2">
+            <i class="fas fa-lemon dot-lime"></i> Limones
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="js/analitica.js"></script>
+  <script src="js/analitica.js"></script>
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 {% endblock %}
