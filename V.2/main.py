@@ -22,7 +22,7 @@ templateData = {
         'control': {
             'name': 'Control',
             'url': 'control.html',
-            'icon': 'fa-cog'
+            'icon': 'fa-cogs'
         }
     }
 }
