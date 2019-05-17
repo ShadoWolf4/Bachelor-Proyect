@@ -1,20 +1,24 @@
-import * as common  from "./common.js"
+import Settings from './settings.js'
 
 let socket = io();
+let s = new Settings();
 
 $(() => {
-    
     loop();
 });
 
 function loop() {
 
-    common.updateConnectionStatus(socket.connected);
-    common.updateBatteryStatus(100, socket.connected);
+    s.isConnected = socket.connected;
+
+    s.updateAnalytics();
+    s.updateConnectionStatus();
+    s.updateBatteryStatus();
 
     requestAnimationFrame(loop);
 
 }
+
 
 socket.on('message', function(msg){
     console.log(msg);

@@ -4,6 +4,7 @@
 from flask import Flask, render_template, abort, send_file, redirect
 from flask_socketio import SocketIO, disconnect
 from jinja2 import TemplateNotFound
+from camera import Camera
 import datetime
 import time
 import sys
