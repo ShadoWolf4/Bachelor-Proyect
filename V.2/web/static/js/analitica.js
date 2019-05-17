@@ -5,6 +5,11 @@ let s = new Settings();
 
 $(() => {
     loop();
+
+    $('#shutdown').click(() => {
+        socket.emit('shutdown', {})
+    });
+
 });
 
 function loop() {
@@ -18,7 +23,6 @@ function loop() {
     requestAnimationFrame(loop);
 
 }
-
 
 socket.on('message', function(msg){
     console.log(msg);

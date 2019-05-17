@@ -6,9 +6,13 @@ from flask_socketio import SocketIO, disconnect
 from jinja2 import TemplateNotFound
 from camera import Camera
 import datetime
+import subprocess
 import time
 import sys
 import os
+
+frontCamera = Camera(0, label='Frontal').start()
+rearCamera = Camera(1, label='Trasera').start()
 
 currentYear = datetime.datetime.now().strftime("%Y")
 templateData = {
@@ -35,6 +39,9 @@ app.config['SECRET_KEY'] = 'JORGEMARGAINKEY'
 
 socketio = SocketIO(app)
 
+def log(message):
+    print(os.getpid(), message)
+
 @app.route('/')
 def index():
     return redirect(homepage['url'])
@@ -55,9 +62,19 @@ def htmlLookup(page):
 def pageNotFound(error):
     return "Not found."
 
+@socketio.on('shutdown')
+def handleShutdown(payload):
+    log('Starting shutdown process...')
+    frontCamera.stop()
+    rearCamera.stop()
+    try:
+        socketio.stop()
+    except SystemExit:
+        subprocess.run(['kill', '%d' % os.getpid()])
+
 @socketio.on('message')
-def handleMessage(message):
-    print(message)
+def handleMessage(payload):
+    print(payload)
     
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=8000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=8000, debug=False)
