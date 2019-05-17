@@ -3,7 +3,33 @@ let isConnected = false;
 
 function updateVelocity(vx, vy, vz) {
 
-    $('#velX').html(`${vx} m/s²`);
+    $('#velX').html(`${vx} m/s`);
+    $('#velY').html(`${vy} m/s`);
+    $('#velZ').html(`${vz} m/s`);
+
+}
+
+function updateAcceleration(ax, ay, az) {
+
+    $('#acelX').html(`${ax} m²/s`);
+    $('#acelY').html(`${ay} m²/s`);
+    $('#acelZ').html(`${az} m²/s`);
+
+}
+
+
+function updateGeoloctaion(lat, lon, alt) {
+
+    $('#lat').html(`${lat} °`);
+    $('#lon').html(`${lon} °`);
+    $('#alt').html(`${alt} m`);
+
+}
+
+function updateTime(date, time) {
+
+    $('#date').html(`${date} °`);
+    $('#time').html(`${time} °`);
 
 }
 
