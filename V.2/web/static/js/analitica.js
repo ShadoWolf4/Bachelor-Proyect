@@ -1,6 +1,12 @@
 let socket = io();
 let isConnected = false;
 
+function updateVelocity(vx, vy, vz) {
+
+    $('#velX').html(`${vx} m/s²`);
+
+}
+
 function updateConnectionStatus(isConnected) {
 
     // Get sections.
