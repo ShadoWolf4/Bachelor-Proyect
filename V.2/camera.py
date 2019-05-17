@@ -16,38 +16,24 @@ class Camera():
         self.frameRate = frameRate
         self.imageQ = multiprocessing.Queue() 
         self.stop = multiprocessing.Event()
+        self.exited = multiprocessing.Event()
         self.process = multiprocessing.Process(target=self.run, args=())
-        self.process.daemon = False
+        self.process.daemon = True
         self.log('Creating camera...')
 
     def run(self):
         self.log('Starting camera...')
-        camera1 = None
-        camera2 = None
+        frontCamera = cv2.VideoCapture(2)
+        time.sleep(2)
         try:
-            camera1 = cv2.VideoCapture(1)
-            # camera2 = cv2.VideoCapture(2)
-            # camera1.set(cv2.CAP_PROP_FRAME_WIDTH, self.frameDimensions[0])
-            # camera1.set(cv2.CAP_PROP_FRAME_HEIGHT, self.frameDimensions[1])
-            # camera1.set(cv2.CAP_PROP_FPS, self.frameRate)
-            # camera2.set(cv2.CAP_PROP_FRAME_WIDTH, self.frameDimensions[0])
-            # camera2.set(cv2.CAP_PROP_FRAME_HEIGHT, self.frameDimensions[1])
-            # camera2.set(cv2.CAP_PROP_FPS, self.frameRate)
             while not self.stop.is_set():
-                ret1, frame1 = camera1.read()
-                # ret2, frame2 = camera2.read()
-                if ret1:
-                    self.imageQ.put({
-                        'camera1': frame1
-                    })
+                (grabbed, front) = frontCamera.read()
+                if grabbed:
+                    self.imageQ.put(front)
         except KeyboardInterrupt:
             pass
-        except Exception as e:
-            print(e)
-        if camera1 is not None:
-            camera1.release()
-        if camera2 is not None:
-            camera2.release()
+        frontCamera.release()
+        self.exited.set()
         self.log('Closing camera...')
 
     def log(self, message):
@@ -56,34 +42,24 @@ class Camera():
 if __name__ == "__main__":
     camera = Camera()
     camera.process.start()
-    cv2.namedWindow('Cam 1', cv2.WINDOW_AUTOSIZE)
-    # cv2.namedWindow('Cam 2', cv2.WINDOW_AUTOSIZE)
+    cv2.namedWindow('main', cv2.WINDOW_AUTOSIZE)
     try:
         while True:
-            images = None
             while not camera.imageQ.empty():
-                images = camera.imageQ.get()
-            if images is not None:
-                print(images['camera1'])
-                cv2.imshow('Cam 1', images['camera1'])
-                # cv2.imshow('Cam 2', images['camera2'])
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+                image = camera.imageQ.get()
+                if not image.empty():
+                    cv2.imshow('main', image)
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord('q'):
                 break
     except KeyboardInterrupt:
         pass
-
     cv2.destroyAllWindows()
     camera.stop.set()
 
-    # Wait for camera to be dead.
-    waitTime = 0
-    print(os.getpid(), 'Waiting for Camera to die...')
-    while camera.process.is_alive() or waitTime < 5:
+    while not camera.exited.is_set():
+        print('Waiting for camera to exit...')
         time.sleep(1)
-        waitTime += 1
-
-
-
 
 #     import numpy as np
 # import cv2
