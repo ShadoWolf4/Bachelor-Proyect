@@ -1,9 +1,84 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  
+<style>
+  .alt{
+    height:270px;
+  }
+</style>
+<div class="row">
+
+  <!-- Velocity Analytics -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-primary shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-primary">GPS</h6>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="h5 font-weight-bold text-primary text-uppercase mb-1">Mapa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acceleration Analytics -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-success shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-success">Cámara Frontal</h6>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-success text-uppercase mb-1">Video</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Row -->
+
+<div class="row">
+   <!-- Geographic Analytics -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-info shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-info">Control</h6>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-info text-uppercase mb-1">mouse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time Analytics -->
+  <div class="col-xl-6 col-md-6 mb-4">
+    <div class="card border-left-warning shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-warning">Cámara Trasera</h6>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Video</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
 {% endblock %}
 
 {% block scripts %}
+  <script src='js/control.js'></script>
   <script src='vendor/leaflet/leaflet.js'></script>
 {% endblock %}
