@@ -46,8 +46,8 @@ class Camera():
         cv2.putText(frame, text, (x0, y0 + height), self.FONT, fontScale=self.FONT_SCALE, color=self.FONT_COLOR, thickness=self.FONT_THICKNESS)
 
     def update(self):
+        self.log('Starting camera: ' + self.label)
         try:
-            self.log('Starting camera: ' + self.label)
             while not self.stopFlag.is_set():
                 (grabbed, frame) = self.stream.read()
                 if self.verticalFlip:

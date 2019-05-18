@@ -38,7 +38,6 @@ class GPS(threading.Thread):
         self.timeSinceLastPositionChange = time.time()
         self.positionUpdateRate = 0
         
-
         self.totalDistance = np.array([[0], [0], [0]], dtype=np.float)
         self.velocity = np.array([0, 0, 0], dtype=np.float)
         self.acceleration = np.array([0, 0, 0], dtype=np.float)

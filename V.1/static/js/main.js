@@ -13,7 +13,7 @@ const KEY_RIGHT = 68;
 class Settings {
     constructor() {   
 
-        // URLs
+        // URLs 
         this.onlineMapAPI = 'https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=OrA58S1v6SW3vr3lw43g';
         this.onlineStreetsAPI = 'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=OrA58S1v6SW3vr3lw43g';
         this.offlineMapAPI = `http://${document.domain}:${location.port}/basic/{z}/{x}/{y}.png`;
@@ -24,10 +24,7 @@ class Settings {
 
         // Maps
         this.initialPosition = [25.66241661, -100.41727066];
-        this.icon = L.icon({ 
-            iconUrl: '../img/leaflet/icon.png',
-            shadowSize: [0, 0]
-        });
+        this.icon = 
         this.minZoom = 6;
         this.maxZoom = 18;
         this.map = undefined;

@@ -9,7 +9,8 @@
   <meta name="author" content="">
   <title>{{ active.name }} - Vehículo Agrónomo</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
+  {% block style %}{% endblock %}
 </head>
 
 <body id="page-top">
@@ -108,9 +109,9 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="mb-0 text-gray-800">{{ active.name }}</h3>
-            <button type="button" id="shutdown" class="btn btn-sm btn-danger shadow-sm">
+          <div class="align-items-center justify-content-between mb-4 clearfix">
+            <h3 class="mb-0 text-gray-800 float-left">{{ active.name }}</h3>
+            <button type="button" id="shutdown" class="float-right btn btn-sm btn-danger shadow-sm">
               <i class="fas fa-power-off fa-sm text-white-50 mr-2"></i>
               Shutdown
             </button>

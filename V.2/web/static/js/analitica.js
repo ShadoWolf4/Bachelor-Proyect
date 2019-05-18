@@ -1,17 +1,21 @@
 import Settings from './settings.js'
 
-let socket = io();
 let s = new Settings();
+let socket = io.connect(s.socketURL);
 
-$(() => {
-
-    loop();
+function setCallbacks() {
 
     $('#shutdown').click(() => {
         if (s.isConnected) {
             socket.emit('shutdown', {})
         }
     });
+
+}
+
+$(() => {
+    setCallbacks();
+    loop();
 
 });
 
@@ -27,9 +31,14 @@ function loop() {
         'data': 1
     });
 
-    setTimeout(loop, 1000);
+    setTimeout(loop, 1000 / s.frameRate);
+
 }
 
-socket.on('message', function(msg){
-    console.log(msg);
+socket.on('message', function(payload){
+
+    if (payload) {
+        s.processGPSData(payload['gps']);
+    }
+
 });

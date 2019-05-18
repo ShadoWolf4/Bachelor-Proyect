@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
+{% block style %}
+  <link href="vendor/leaflet/leaflet.css" rel="stylesheet" type="text/css">
+  <style>
+    #satellites {
+      border-right: 1px solid #e3e6f0;
+      padding-right: 1rem;
+      margin-right: 1rem;
+    }
+    #map {
+      height: 100px;
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
 <div class="row">
 
@@ -8,14 +22,28 @@
     <div class="card border-left-primary shadow alt">
       <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
         <h6 class="m-0 font-weight-bold text-primary">GPS</h6>
-        <div class="col-auto">
-          <i class="fas fa-globe-americas text-gray-300"></i>
+        <div class="col-auto clearfix">
+          <div id="satellites" class="ml-auto float-left">
+            <i id="satelliteGreen" class="mr-2 fas fa-satellite-dish text-success d-none"></i>
+            <i id="satelliteYellow" class="mr-2 fas fa-satellite-dish text-warning d-none"></i>
+            <i id="satelliteGray" class="mr-2 fas fa-satellite-dish text-gray-300"></i>
+            <span id="satelliteCount" class="text-secondary small">0 / 12</span>  
+          </div>
+          <div id="mapOnline" class="d-none float-right">
+            <i class="mr-2 fas fa-wifi text-success"></i>
+            <span class="text-secondary small">Con Internet</span>  
+          </div>
+          <div id="mapOffline" class="float-right">
+              <i class="mr-2 fas fa-wifi text-gray-300"></i>
+              <span class="text-secondary small">Sin Internet</span>  
+            </div>
         </div>
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col text-primary">
-              Mapa
+              <div id="map">
+              </div>
           </div>
         </div>
       </div>

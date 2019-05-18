@@ -5,8 +5,9 @@ from flask import Flask, render_template, abort, send_file, redirect
 from flask_socketio import SocketIO, disconnect
 from jinja2 import TemplateNotFound
 from camera import Camera
-import datetime
+from gps import GPS
 import subprocess
+import datetime
 import time
 import sys
 import os
@@ -14,6 +15,8 @@ import os
 frameDimensions = (640, 480)
 frameRate = 24
 frameQuality = 50
+
+gps = GPS('/dev/ttyUSB0', 4800).start()
 frontCamera = Camera(0, frameDimensions, frameRate, label='Frontal', verticalFlip=False).start()
 rearCamera = Camera(1, frameDimensions, frameRate, label='Trasera', verticalFlip=False).start()
 
@@ -45,6 +48,14 @@ socketio = SocketIO(app)
 def log(message):
     print(os.getpid(), message)
 
+@app.route('/basic/<zoom>/<x>/<y>.png')
+def sendMap(zoom, x, y):
+    possibleImage = os.path.join('maps/basic/' + zoom, x, y + '.png')
+    if (os.path.exists(possibleImage)):
+        return send_file(possibleImage, mimetype='image/png')
+    else:
+        abort(404)
+
 @app.route('/')
 def index():
     return redirect(homepage['url'])
@@ -70,6 +81,7 @@ def handleShutdown(payload):
     log('Starting shutdown process...')
     frontCamera.stop()
     rearCamera.stop()
+    gps.stop()
     try:
         socketio.stop()
     except SystemExit:
@@ -77,13 +89,14 @@ def handleShutdown(payload):
 
 @socketio.on('message')
 def handleMessage(payload):
-    if frontCamera.started and rearCamera.started:
+    if frontCamera.started and rearCamera.started and gps.started:
         frontCameraBytes = Camera.encodeImage(frontCamera.read(), quality=frameQuality)
         rearCameraBytes = Camera.encodeImage(rearCamera.read(), quality=frameQuality)
         socketio.emit('message', {
             'frontCamera': frontCameraBytes,
-            'rearCamera': rearCameraBytes
+            'rearCamera': rearCameraBytes,
+            'gps': gps.read()
         })
     
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=8000, debug=False)
+    socketio.run(app, host='0.0.0.0', port=80, debug=False)
