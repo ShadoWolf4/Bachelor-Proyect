@@ -6,6 +6,7 @@ import cv2
 import time
 import datetime
 import os
+import base64
 
 class Camera():
 
@@ -14,8 +15,9 @@ class Camera():
     FONT_THICKNESS = 1                      # Font thickness parameter for OpenCV.
     FONT_SCALE = 0.6                        # Font scale parameter for OpenCV.
 
-    def __init__(self, id, frameDimensions=(640, 480), frameRate=24, label=''):
+    def __init__(self, id, frameDimensions=(640, 480), frameRate=24, label='', verticalFlip=False):
         self.label = label
+        self.verticalFlip = verticalFlip
         self.stopFlag = threading.Event()
         self.lock = threading.Lock()
         self.thread = None
@@ -48,6 +50,8 @@ class Camera():
             self.log('Starting camera: ' + self.label)
             while not self.stopFlag.is_set():
                 (grabbed, frame) = self.stream.read()
+                if self.verticalFlip:
+                    frame = cv2.flip(frame, 1)
                 date = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')
                 self.drawText(frame, date, 10, 15)
                 self.lock.acquire()
@@ -71,12 +75,18 @@ class Camera():
         self.stopFlag.set()
         self.thread.join()
 
+    @staticmethod
+    def encodeImage(frame, quality=100):
+        _, buffer = cv2.imencode('.jpg', frame, [int(cv2.IMWRITE_JPEG_QUALITY), quality])
+        binaryImage =  base64.b64encode(buffer)
+        return binaryImage
+
     def __exit__(self, exc_type, exc_value, traceback) :
         self.stream.release()
     
 if __name__ == "__main__":
-    webcam = Camera(1, label='Vista Frontal').start()
-    camera = Camera(2, label='Vista Trasera').start()
+    webcam = Camera(2, label='Vista Frontal').start()
+    camera = Camera(0, label='Vista Trasera').start()
     cv2.namedWindow('main', cv2.WINDOW_AUTOSIZE)
     cv2.namedWindow('web', cv2.WINDOW_AUTOSIZE)
     while True:

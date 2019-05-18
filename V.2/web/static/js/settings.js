@@ -14,6 +14,7 @@ export default class Settings {
         this.time = "####";
         this.isConnected = false;
         this.battery = 100;
+        this.frameRate = 24;
 
     }
 
@@ -75,7 +76,6 @@ export default class Settings {
 
     }
 
-
     updateBatteryStatus() {
 
         // Get icons.
@@ -112,6 +112,24 @@ export default class Settings {
             off.removeClass('d-none');
         }
 
+    }
+
+    byteArrayToImage(rawBytes) {
+
+        // Initialize the output string by writing the base64 header.
+        let binary = 'data:image/jpg;base64,';
+    
+        // Convert the byte to an array.
+        let bytes = new Uint8Array(rawBytes);
+    
+        // Read every byte and convert it to string.
+        const length = bytes.byteLength
+        for (let i = 0; i < length; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+    
+        // Send image.
+        return binary;
     }
 
 };

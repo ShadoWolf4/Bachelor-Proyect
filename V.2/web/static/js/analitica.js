@@ -4,10 +4,13 @@ let socket = io();
 let s = new Settings();
 
 $(() => {
+
     loop();
 
     $('#shutdown').click(() => {
-        socket.emit('shutdown', {})
+        if (s.isConnected) {
+            socket.emit('shutdown', {})
+        }
     });
 
 });
@@ -20,8 +23,11 @@ function loop() {
     s.updateConnectionStatus();
     s.updateBatteryStatus();
 
-    requestAnimationFrame(loop);
+    socket.emit('message', {
+        'data': 1
+    });
 
+    setTimeout(loop, 1000);
 }
 
 socket.on('message', function(msg){

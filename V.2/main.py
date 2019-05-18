@@ -11,8 +11,11 @@ import time
 import sys
 import os
 
-frontCamera = Camera(0, label='Frontal').start()
-rearCamera = Camera(1, label='Trasera').start()
+frameDimensions = (640, 480)
+frameRate = 24
+frameQuality = 50
+frontCamera = Camera(0, frameDimensions, frameRate, label='Frontal', verticalFlip=False).start()
+rearCamera = Camera(1, frameDimensions, frameRate, label='Trasera', verticalFlip=False).start()
 
 currentYear = datetime.datetime.now().strftime("%Y")
 templateData = {
@@ -74,7 +77,13 @@ def handleShutdown(payload):
 
 @socketio.on('message')
 def handleMessage(payload):
-    print(payload)
+    if frontCamera.started and rearCamera.started:
+        frontCameraBytes = Camera.encodeImage(frontCamera.read(), quality=frameQuality)
+        rearCameraBytes = Camera.encodeImage(rearCamera.read(), quality=frameQuality)
+        socketio.emit('message', {
+            'frontCamera': frontCameraBytes,
+            'rearCamera': rearCameraBytes
+        })
     
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=8000, debug=False)
