@@ -34,6 +34,11 @@ templateData = {
             'name': 'Control',
             'url': 'control.html',
             'icon': 'fa-cogs'
+        },
+        'intrucciones':{
+            'name': 'Instrucciones',
+            'url': 'instrucciones.html',
+            'icon': 'fa-info-circle'
         }
     }
 }

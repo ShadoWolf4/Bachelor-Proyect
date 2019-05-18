@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <!-- Control Menu Keyboard Instructions -->
+  <div class="col-xl-12 col-md-6 mb-4">
+    <div class="card border-left-warning shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-warning">Cambio Control</h6>
+        <div class="col-auto">
+          <i class="fas fa-keyboard text-gray-300"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col text-secundary">
+              <ul>
+                <li>Para seleccionar un modelo de control diferente, vamos a utilizar la letra “S” de nuestro teclado.</li>
+                <li>Para activar o desactivar el candado de trabajo, vamos a utilizar la letra “E” de nuestro teclado. Este candado si se encuentra activado, nos prohíbe mover el vehículo.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <!-- Ackermann Keyboard Instructions -->
+  <div class="col-xl-12 col-md-6 mb-4">
+    <div class="card border-left-primary shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-primary">Control Ackermann</h6>
+        <div class="col-auto">
+          <i class="fas fa-car text-gray-300"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col text-secundary">
+              <ul>
+                <li>El control mediante Ackermann restringe a solamente mover la dirección de las llantas delanteras y ambas se mueven en la misma dirección, simulando el funcionamiento de un automóvil.</li>
+                <li>Utilizando las flechas del teclado podemos hacer que el vehículo tenga movimiento.</li>
+                <li>Utilizando las flechas de derecha o izquierda,  (← , →), modificamos la dirección en las que las llantas delanteras se encuentran. Con una capacidad máxima de 70°</li>
+                <li>Utilizando las flechas de Adelante y Atrás, (↑ , ↓), podemos hacer que el vehículo se mueva en la dirección en la que estamos seleccionando.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+   <!-- Omnidireccional Keyboard Instructions -->
+  <div class="col-xl-12 col-md-6 mb-4">
+    <div class="card border-left-info shadow alt">
+      <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between ">
+        <h6 class="m-0 font-weight-bold text-info">Control Omnidireccional</h6>
+        <div class="col-auto">
+          <i class="fas fa-car text-gray-300"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col text-secundary">
+            <ul>
+                <li>El control mediante un sistema Omnidireccional nos permite mover la dirección de cada una de las llantas del vehículo. Dentro de nuestro sistema, solamente se puede mover las llantas por pares, las delanteras y traseras. Esto para restringir grados contrarios y que afecten el movimiento del vehículo.</li>
+                <li>Utilizando las flechas y el teclado podemos hacer que el vehículo tenga movimiento.</li>
+                <li>Para mover las llantas delanteras o frontales, debemos de seleccionar el modo frontal con la letra “F” de nuestro teclado. </li>
+                <li>Para mover las llantas traseras, debemos de seleccionar el modo trasero con la letra “T” de nuestro teclado. </li>
+                <li>Si nos encontramos en el modo frontal o trasero y queremos mover la dirección de las llantas, utilizamos las flechas derecha o izquierda,  (← , →).</li>
+                <li>Si ya nos encontramos con la dirección que queremos, podemos mover el vehículo hacia adelante o atrás, utilizando las flechas (↑ , ↓) de nuestro teclado.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src='js/control.js'></script>
+  <script src='vendor/leaflet/leaflet.js'></script>
+{% endblock %}
