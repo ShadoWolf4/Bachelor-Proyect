@@ -19,11 +19,15 @@ frameQuality = 30
 carEnabled = True
 
 gps = GPS('/dev/ttyUSB0', 4800).start()
+time.sleep(1)
 if carEnabled:
     car = Car('/dev/ttyAMA0', 115200, debug=True)
     car.start()
+time.sleep(1)
 frontCamera = Camera(0, frameDimensions, frameRate, label='Frontal', verticalFlip=False).start()
+time.sleep(1)
 rearCamera = Camera(1, frameDimensions, frameRate, label='Trasera', verticalFlip=False).start()
+time.sleep(1)
 
 currentYear = datetime.datetime.now().strftime("%Y")
 templateData = {
