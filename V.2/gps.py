@@ -33,8 +33,8 @@ class GPS():
 
         self.date = datetime.date.today()
         self.isGPSFixed = False
-        self.position = np.zeros((1, 3))
-        self.prevPosition = np.zeros((1, 3))
+        self.position = np.zeros((3))
+        self.prevPosition = np.zeros((3))
         self.positionUpdateRate = 0
         self.timeSinceLastPositionUpdate = time.time()
         self.satellites = 0

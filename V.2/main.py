@@ -13,8 +13,8 @@ import sys
 import os
 
 frameDimensions = (640, 480)
-frameRate = 24
-frameQuality = 50
+frameRate = 16
+frameQuality = 30
 
 gps = GPS('/dev/ttyUSB0', 4800).start()
 frontCamera = Camera(0, frameDimensions, frameRate, label='Frontal', verticalFlip=False).start()

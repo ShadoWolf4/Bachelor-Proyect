@@ -25,7 +25,6 @@ export default class Settings {
         this.battery = 100;
         this.frameRate = 24;
 
-
         this.socketURL = `ws://${document.domain}`;
 
         this.map = {
