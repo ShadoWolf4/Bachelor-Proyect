@@ -74,6 +74,7 @@ class Camera():
         self.started = False
         self.stopFlag.set()
         self.thread.join()
+        self.stream.release()
 
     @staticmethod
     def encodeImage(frame, quality=100):
@@ -81,12 +82,9 @@ class Camera():
         binaryImage =  base64.b64encode(buffer)
         return binaryImage
 
-    def __exit__(self, exc_type, exc_value, traceback) :
-        self.stream.release()
-    
 if __name__ == "__main__":
-    webcam = Camera(2, label='Vista Frontal').start()
-    camera = Camera(0, label='Vista Trasera').start()
+    webcam = Camera(0, label='Vista Frontal').start()
+    camera = Camera(1, label='Vista Trasera').start()
     cv2.namedWindow('main', cv2.WINDOW_AUTOSIZE)
     cv2.namedWindow('web', cv2.WINDOW_AUTOSIZE)
     while True:
