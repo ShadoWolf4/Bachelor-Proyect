@@ -32,6 +32,7 @@ export default class Car {
         this.drivingMode = 'ackermann';
         this.locked = false;
         this.leftSpeed = 0;
+        this.maxSpeed = 100;
         this.rightSpeed = 0;
     }
 
@@ -216,22 +217,22 @@ export default class Car {
                 break;
             case 'w':
             case 'W':
-                this.leftSpeed = 50;
-                this.rightSpeed = 50;
+                this.leftSpeed = this.maxSpeed;
+                this.rightSpeed = this.maxSpeed;
                 break;
             case 's':
             case 'S':
-                this.leftSpeed = -50;
-                this.rightSpeed = -50;
+                this.leftSpeed = -this.maxSpeed;
+                this.rightSpeed = -this.maxSpeed;
                 break;
             case 'a':
             case 'A':
                 this.leftSpeed = 0;
-                this.rightSpeed = 50;
+                this.rightSpeed = this.maxSpeed;
                 break;
             case 'd':
             case 'D':
-                this.leftSpeed = 50;
+                this.leftSpeed = this.maxSpeed;
                 this.rightSpeed = 0;
                 break;
         }
