@@ -23,7 +23,7 @@ export default class Settings {
 
         this.isConnected = false;
         this.battery = 100;
-        this.frameRate = 16;
+        this.frameRate = 5;
 
         const port = window.location.port == '' ? '' : `:${window.location.port}`;
         this.socketURL = `ws://${document.domain}${port}`;

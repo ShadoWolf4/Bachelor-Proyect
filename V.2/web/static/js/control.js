@@ -1,5 +1,11 @@
 import Settings from './settings.js'
+import Car from './car.js'
 
+let canvas = document.getElementById('control');
+let ctx = canvas.getContext('2d');
+let car = new Car(ctx);
+let width = 0;
+let height = 0;
 let markers = [];
 let s = new Settings();
 let socket = io.connect(s.socketURL);
@@ -7,6 +13,14 @@ let frontCamera = document.getElementById('frontCamera');
 let rearCamera = document.getElementById('rearCamera');
 
 function setCallbacks() {
+
+    $(document).on('keyup', (event) => {
+        car.keyUp(event);
+    });
+    
+    $(document).on('keydown', (event) => {
+        car.keyDown(event);
+    });
 
     function updateMapStatus(status) {
         let online = $('#mapOnline');
@@ -33,13 +47,22 @@ function setCallbacks() {
     }
 
     function resize() {
-        $('#map').height(Math.round($('#frontCamera').height()));
+        height = Math.round($('#frontCamera').height());
+        width = $('#canvasContainer').width();
+        let pixelRatio = window.devicePixelRatio;
+        canvas.width = Math.floor(width * pixelRatio);
+        canvas.height = Math.floor(height * pixelRatio);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.scale(pixelRatio, pixelRatio);
+        $('#map').height(height);
         s.map['obj'].invalidateSize();
+        car.resize(width, height);
     }
 
-    $(window).on('resize', function() {
-        resize();
-    });
+    $(window).on('resize', resize);
+    $('#sidebarToggle').on('click', resize);
+
     resize();
 
     $('#shutdown').click(() => {
@@ -94,24 +117,28 @@ $(() => {
 
     setCallbacks();
     loop();
+    animationLoop();
 
 });
 
+function animationLoop() {
+    ctx.clearRect(0, 0, width, height);
+    car.update();
+    car.draw();
+    requestAnimationFrame(animationLoop);
+}
+
+
 function loop() {
-    
     s.isConnected = socket.connected;
-
-
     if (s.isConnected) {
         $('#satelliteCount').html(`${s.gpsSatellites} / 12`);
         let gray = $('#satelliteGray');
         let yellow = $('#satelliteYellow');
         let green = $('#satelliteGreen');
-
         gray.addClass('d-none');
         yellow.addClass('d-none');
         green.addClass('d-none');
-
         if (s.gpsSatellites <= 0) {
             gray.removeClass('d-none');
         } else if (s.gpsSatellites <= 4) {
@@ -119,20 +146,14 @@ function loop() {
         } else {
             green.removeClass('d-none');
         }
-
     }
-
-
     s.updateAnalytics();
     s.updateConnectionStatus();
     s.updateBatteryStatus();
-
     socket.emit('message', {
         'data': 1
     });
-
     setTimeout(loop, 1000 / s.frameRate);
-
 }
 
 socket.on('disconnect', function() {

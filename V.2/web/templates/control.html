@@ -11,6 +11,10 @@
     #map {
       height: 100px;
     }
+    #control {
+      width: 100%;
+      height: 100px;
+    }
   </style>
 {% endblock %}
 
@@ -41,7 +45,7 @@
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
-          <div class="col text-primary">
+          <div class="col">
               <div id="map">
               </div>
           </div>
@@ -61,7 +65,7 @@
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
-          <div class="col text-success text-center">
+          <div class="col text-center">
               <img id="frontCamera" class="img-fluid" alt="Cámara Frontal" src="img/no-image.png">
           </div>
         </div>
@@ -84,8 +88,8 @@
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
-          <div class="col text-info">
-            Control
+          <div class="col" id="canvasContainer">
+            <canvas id="control"></canvas>
           </div>
         </div>
       </div>
@@ -103,7 +107,7 @@
       </div>
       <div class="card-body">
         <div class="row no-gutters align-items-center">
-          <div class="col text-warning text-center">
+          <div class="col text-center">
             <img id="rearCamera" class="img-fluid" alt="Cámara Trasera" src="img/no-image.png">
           </div>
         </div>
@@ -114,6 +118,6 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="module" src='js/control.js'></script>
   <script src='vendor/leaflet/leaflet.js'></script>
+  <script type="module" src='js/control.js'></script>
 {% endblock %}

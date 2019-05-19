@@ -40,6 +40,7 @@ class GPS():
         self.satellites = 0
         self.distance = np.zeros((3, 1))
         self.velocity = np.zeros((3, 1))
+        self.prevVelocity = np.zeros((3, 1))
         self.acceleration = np.zeros((3, 1))
 
         self.latestStatus = {
@@ -157,8 +158,12 @@ class GPS():
         deltaECEF = positionECEF - prevPositionECEF
 
         self.distance += np.absolute(np.matmul(rotationMatrix, deltaECEF))
+
+        self.prevVelocity = self.velocity
         self.velocity = deltaECEF / self.positionUpdateRate
-        self.acceleration = self.velocity / self.positionUpdateRate
+
+        self.acceleration = (self.velocity - self.prevVelocity) / self.positionUpdateRate
+
         
     def processData(self, raw):
         """
