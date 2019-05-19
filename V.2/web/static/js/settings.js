@@ -25,13 +25,16 @@ export default class Settings {
         this.battery = 100;
         this.frameRate = 24;
 
-        this.socketURL = `ws://${document.domain}`;
+
+
+        const port = window.location.port == '' ? '' : `:${window.location.port}`;
+        this.socketURL = `ws://${document.domain}${port}`;
 
         this.map = {
             'urls': {
                 'Online': 'https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=OrA58S1v6SW3vr3lw43g',
                 'Online Streets': 'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=OrA58S1v6SW3vr3lw43g',
-                'Offline': `http://${document.domain}/basic/{z}/{x}/{y}.png`,
+                'Offline': `http://${document.domain}${port}/basic/{z}/{x}/{y}.png`,
             },
             'minZoom': 6,
             'maxZoom': 18,
