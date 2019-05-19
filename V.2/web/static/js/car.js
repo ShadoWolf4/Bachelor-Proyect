@@ -31,6 +31,8 @@ export default class Car {
         this.movingFrontWheels = true;
         this.drivingMode = 'ackermann';
         this.locked = false;
+        this.leftSpeed = 0;
+        this.rightSpeed = 0;
     }
 
     resize(width, height) {
@@ -212,6 +214,26 @@ export default class Car {
                     event.preventDefault();
                 }
                 break;
+            case 'w':
+            case 'W':
+                this.leftSpeed = 50;
+                this.rightSpeed = 50;
+                break;
+            case 's':
+            case 'S':
+                this.leftSpeed = -50;
+                this.rightSpeed = -50;
+                break;
+            case 'a':
+            case 'A':
+                this.leftSpeed = 0;
+                this.rightSpeed = 50;
+                break;
+            case 'd':
+            case 'D':
+                this.leftSpeed = 50;
+                this.rightSpeed = 0;
+                break;
         }
     }
 
@@ -249,6 +271,16 @@ export default class Car {
                     this.movingFrontWheels = !this.movingFrontWheels;
                 }
                 break;
+            case 'w':
+            case 'W':
+            case 's':
+            case 'S':
+            case 'a':
+            case 'A':
+            case 'd':
+            case 'D':
+                this.leftSpeed = 0;
+                this.rightSpeed = 0;
         }
     }
 

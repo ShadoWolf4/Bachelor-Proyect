@@ -151,7 +151,8 @@ function loop() {
     s.updateConnectionStatus();
     s.updateBatteryStatus();
     socket.emit('message', {
-        'data': 1
+        'left': car.leftSpeed,
+        'right': car.rightSpeed
     });
     setTimeout(loop, 1000 / s.frameRate);
 }

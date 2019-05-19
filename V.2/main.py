@@ -102,6 +102,16 @@ def handleMessage(payload):
             'rearCamera': rearCameraBytes,
             'gps': gps.read()
         })
-    
+    if payload:
+        keys = payload.keys()
+        if ('left' in keys and 'right' in keys):
+            left = payload['left']
+            right = payload['right']
+        else:
+            left = 0
+            right = 0
+        command = 'VEL %d %d' % (int(left), int(right))
+        print(command)
+        
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=8000, debug=False)
