@@ -5,6 +5,7 @@ from flask import Flask, render_template, abort, send_file, redirect
 from flask_socketio import SocketIO, disconnect
 from jinja2 import TemplateNotFound
 from camera import Camera
+from car import Car
 from gps import GPS
 import subprocess
 import datetime
@@ -15,8 +16,12 @@ import os
 frameDimensions = (640, 480)
 frameRate = 16
 frameQuality = 30
+carEnabled = True
 
 gps = GPS('/dev/ttyUSB0', 4800).start()
+if carEnabled:
+    car = Car('/dev/ttyAMA0', 115200, debug=True)
+    car.start()
 frontCamera = Camera(0, frameDimensions, frameRate, label='Frontal', verticalFlip=False).start()
 rearCamera = Camera(1, frameDimensions, frameRate, label='Trasera', verticalFlip=False).start()
 
@@ -112,6 +117,8 @@ def handleMessage(payload):
             right = 0
         command = 'VEL %d %d' % (int(left), int(right))
         print(command)
+        if carEnabled:
+            car.commandQ.put(command)
         
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=8000, debug=False)
