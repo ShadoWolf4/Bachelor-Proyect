@@ -1,5 +1,9 @@
+<!--This makes the conecction to the base template, so all the modification on this HTML would only affect the part of the sections-->
 {% extends 'base.html' %}
 
+<!--Special Section for the Content of each HTML, 
+    If we need special HTML changes on this HTML this is the section to add this changes
+-->
 {% block content %}
   <div class="row">
     <!-- Control Menu Keyboard Instructions -->
@@ -79,6 +83,8 @@
   </div> 
 {% endblock %}
 
+
+<!--Add only the Scrypts that are going to be used for this section-->
 {% block scripts %}
   <script type="module" src='js/instrucciones.js'></script>
 {% endblock %}

@@ -1,5 +1,9 @@
+<!--This makes the conecction to the base template, so all the modification on this HTML would only affect the part of the sections-->
 {% extends 'base.html' %}
 
+<!--Special Section for the Style of each HTML, 
+    If we need special CSS changes on this HTML this is the section to add this changes
+-->
 {% block style %}
   <link href="vendor/leaflet/leaflet.css" rel="stylesheet" type="text/css">
   <style>
@@ -18,6 +22,11 @@
   </style>
 {% endblock %}
 
+
+
+<!--Special Section for the Content of each HTML, 
+    If we need special HTML changes on this HTML this is the section to add this changes
+-->
 {% block content %}
 <div class="row">
 
@@ -117,6 +126,7 @@
 </div> 
 {% endblock %}
 
+<!--Add only the Scrypts that are going to be used for this section-->
 {% block scripts %}
   <script src='vendor/leaflet/leaflet.js'></script>
   <script type="module" src='js/control.js'></script>
