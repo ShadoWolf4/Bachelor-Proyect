@@ -16,9 +16,10 @@ import os
 frameDimensions = (640, 480)
 frameRate = 16
 frameQuality = 30
-carEnabled = True
+carEnabled = False
 
-gps = GPS('/dev/ttyUSB0', 4800).start()
+#Initialize all the sensors 
+gps = GPS('COM7', 4800).start()
 time.sleep(1)
 if carEnabled:
     car = Car('/dev/ttyAMA0', 115200, debug=True)
@@ -29,7 +30,10 @@ time.sleep(1)
 rearCamera = Camera(1, frameDimensions, frameRate, label='Trasera', verticalFlip=False).start()
 time.sleep(1)
 
+#Vairable for the Current Time
 currentYear = datetime.datetime.now().strftime("%Y")
+
+
 templateData = {
     'name': 'Vehículo Agrónomo',
     'copyright': 'Copyright © %s Departamento de Física y Matemáticas | Universidad de Monterrey' % currentYear,
@@ -62,18 +66,24 @@ socketio = SocketIO(app)
 def log(message):
     print(os.getpid(), message)
 
+#Flask for the GPS
 @app.route('/basic/<zoom>/<x>/<y>.png')
 def sendMap(zoom, x, y):
+    #Searchs for the path of each tile and the image of the GPS
     possibleImage = os.path.join('maps/basic/' + zoom, x, y + '.png')
     if (os.path.exists(possibleImage)):
+        #If the image exists, then send it to the map
         return send_file(possibleImage, mimetype='image/png')
     else:
         abort(404)
 
+#Main Flask, to redirect the user to the homepage
 @app.route('/')
 def index():
     return redirect(homepage['url'])
 
+
+#Flask used to change the actual page or Html that we are on
 @app.route('/<page>')
 def htmlLookup(page):
     active = None
@@ -90,6 +100,7 @@ def htmlLookup(page):
 def pageNotFound(error):
     return "Not found."
 
+#When the button shutdown is selected, the system starts to kill the process of the sensor. Ona at a time
 @socketio.on('shutdown')
 def handleShutdown(payload):
     log('Starting shutdown process...')
@@ -101,6 +112,7 @@ def handleShutdown(payload):
     except SystemExit:
         subprocess.run(['kill', '%d' % os.getpid()])
 
+#This Socket is for the comunication with the camera, and the movement of the car
 @socketio.on('message')
 def handleMessage(payload):
     if frontCamera.started and rearCamera.started and gps.started:
@@ -111,6 +123,8 @@ def handleMessage(payload):
             'rearCamera': rearCameraBytes,
             'gps': gps.read()
         })
+    #this is for the velocity and control of the vehicle.
+    #The system is reci
     if payload:
         keys = payload.keys()
         if ('left' in keys and 'right' in keys):

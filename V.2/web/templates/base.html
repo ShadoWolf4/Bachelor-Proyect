@@ -10,6 +10,7 @@
   <title>{{ active.name }} - Vehículo Agrónomo</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
+  <!--This Blocks works as a conection between the diferent html and the base, so if another html need an special style, or js, they use the blocks to put them in the base template-->
   {% block style %}{% endblock %}
 </head>
 
@@ -26,6 +27,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-tractor"></i>
         </div>
+        <!--This Data Name, is given on the main.py. So if you add new menus and new html, they will appear in this section-->
         <div class="sidebar-brand-text mx-3">{{ data['name'] }}</div>
       </a>
 
@@ -83,6 +85,7 @@
               
               <div class="topbar-divider d-none d-sm-block"></div>
 
+              <!--Battery Status -->
               <li class="nav-item">
                 <span class="nav-link text-secondary">
                     <i id="batteryStatusFull" class="d-none fas fa-battery-full fa-sm mr-2 text-success"></i> 

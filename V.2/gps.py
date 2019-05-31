@@ -52,7 +52,7 @@ class GPS():
             'satellites': self.satellites,
             'date': self.date.strftime("%m/%d/%Y %H:%M:%S")
         }
-
+    #Start Threads
     def start(self):
         if self.started:
             return None
@@ -60,7 +60,7 @@ class GPS():
         self.thread = threading.Thread(target=self.update, args=())
         self.thread.start()
         return self
-
+    #Stop Thread
     def stop(self):
         self.started = False
         self.stopFlag.set()
@@ -75,6 +75,7 @@ class GPS():
     def log(self, message):
         print(os.getpid(), message)
 
+    #Update values of GPS
     def update(self):
         self.log('Starting gps')
         try:

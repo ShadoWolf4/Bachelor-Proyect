@@ -28,6 +28,7 @@ class Camera():
         self.stream.set(cv2.CAP_PROP_FPS, frameRate)
         (self.grabbed, self.frame) = self.stream.read()
 
+    #Start Thread
     def start(self):
         if self.started:
             return None
@@ -45,6 +46,7 @@ class Camera():
         cv2.rectangle(frame, boxCoords[0], boxCoords[1], (0, 0, 0), cv2.FILLED)
         cv2.putText(frame, text, (x0, y0 + height), self.FONT, fontScale=self.FONT_SCALE, color=self.FONT_COLOR, thickness=self.FONT_THICKNESS)
 
+    #Update Camera
     def update(self):
         self.log('Starting camera: ' + self.label)
         try:
@@ -70,18 +72,21 @@ class Camera():
         self.lock.release()
         return frame
 
+    #Stop Thread
     def stop(self):
         self.started = False
         self.stopFlag.set()
         self.thread.join()
         self.stream.release()
 
+    #Method for Quality and Frame of the Video
     @staticmethod
     def encodeImage(frame, quality=100):
         _, buffer = cv2.imencode('.jpg', frame, [int(cv2.IMWRITE_JPEG_QUALITY), quality])
         binaryImage =  base64.b64encode(buffer)
         return binaryImage
 
+#Loop to start the Flask network
 if __name__ == "__main__":
     webcam = Camera(0, label='Vista Frontal').start()
     camera = Camera(1, label='Vista Trasera').start()
